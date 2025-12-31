@@ -8,7 +8,7 @@
                 <xsd:element name="partnerCode" type="xsd:string"/>
                 <xsd:element name="locationCode" type="xsd:string"/>
                 <xsd:element name="messageId" type="xsd:string"/>
-                <xsd:element name="partnerLocationCode" type="xsd:string"/>
+                <xsd:element name="partnerLocationCodde" type="xsd:string"/>
                 <xsd:element name="paymentMethod" type="xsd:string"/>
                 <xsd:element name="channelName" type="xsd:string"/>
                 <xsd:element name="returnOrderCode" type="xsd:string"/>
