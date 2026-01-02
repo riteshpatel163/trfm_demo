@@ -20,7 +20,7 @@
     <ant antfile="${oracle.home}/soa/bin/ant-sca-package.xml"
          dir="${oracle.home}/soa/bin">
         <property name="oracle.home" value="${oracle.home}"/>
-        <property name="compositeName" value="${compositeName}"/>
+        <property name="compositeName" value="mds_deployment"/>
         <property name="compositeDir" value="${compositeDir}"/>
         <property name="revision" value="${revision}"/>
     </ant>
