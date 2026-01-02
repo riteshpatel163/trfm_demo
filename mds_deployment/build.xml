@@ -41,10 +41,9 @@
   <target name="deployMDS">
       <echo>Deploying MDS...</echo>
 
-      <delete dir="deploy"/>
-      <mkdir dir="deploy"/>
+      <mkdir dir="deploy/mds"/>
 
-      <zip destfile="deploy/mds.jar" compress="false">
+      <zip destfile="deploy/mds/mds.jar" compress="false">
           <fileset dir="${mds.repository}/apps"/>
       </zip>
 
@@ -54,7 +53,7 @@
           <property name="user" value="${user}"/>
           <property name="password" value="${password}"/>
           <property name="overwrite" value="true"/>
-          <property name="sarLocation" value="deploy/mds.jar"/>
+          <property name="sarLocation" value="deploy/mds/mds.jar"/>
       </ant>
 
       <echo>MDS deployment completed</echo>
