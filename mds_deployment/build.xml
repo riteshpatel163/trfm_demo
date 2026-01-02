@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="windows-1252" ?>
-<project xmlns="antlib:org.apache.tools.ant" default="init">
-  <target name="init">
-    <tstamp/>
+<project name="deployMDS" default="deployMDS">
+  <property file="build.properties"/>
+  <target name="deployMDS">
+    <echo>Deploy MDS</echo>
+    <echo>Remove and create local MDS temp folder</echo>
+    <delete dir="deploy"/>
+    <mkdir dir="deploy"/>
+    <zip destfile="deploy/mds.jar" compress="false">
+      <fileset dir="${mds.repository}/apps"/>
+    </zip>   
+    <ant antfile="${oracle.home}/soa/bin/ant-sca-deploy.xml" inheritall="false" target="deploy">
+      <property name="wl_home" value="${oracle.home}/wlserver"/>
+      <property name="oracle.home" value="${oracle.home}/soa"/>
+      <property name="serverURL" value="${deploy.serverURL}"/>
+      <property name="user" value="${deploy.user}"/>
+      <property name="password" value="${deploy.password}"/>
+      <property name="overwrite" value="true"/>
+      <property name="forceDefault" value="true"/>
+      <property name="sarLocation" value="deploy/mds.jar"/>
+      <property name="failOnError" value="true"/>
+    </ant>
+    <echo>MDS deployment completed</echo> 
   </target>
 </project>
