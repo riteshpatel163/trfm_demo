@@ -21,7 +21,7 @@
       <property name="compositeName" value="mds_deployment"/>
       <property name="compositeDir" value="D:/jdeveloper_git/git/mds_deployment/SOA"/>
       <property name="oracle.home" value="${oracle.home}"/>
-      <property name="sarLocation" value="${sarLocation}"/>
+      <property name="sarLocation" value="D:/jdeveloper_git/git/mds_deployment/SOA/deploy/sca_mds_deployment_rev${revision}.jar"/>
       <property name="serverURL" value="${serverURL}"/>
       <property name="user" value="${user}"/>
       <property name="password" value="${password}"/>
@@ -35,13 +35,14 @@
     <zip destfile="${mds.deploy.dir}/mds.jar" compress="false">
       <fileset dir="${mds.repository}/apps"/>
     </zip>
+    <echo>MDS zip created at ${mds.deploy.dir}/mds.jar</echo>
     <ant antfile="${oracle.home}/soa/bin/ant-sca-deploy.xml">
       <property name="oracle.home" value="${oracle.home}"/>
       <property name="serverURL" value="${serverURL}"/>
       <property name="user" value="${user}"/>
       <property name="password" value="${password}"/>
       <property name="overwrite" value="true"/>
-      <property name="sarLocation" value="${mds.deploy.dir}mds.jar"/>
+      <property name="sarLocation" value="${mds.deploy.dir}/mds.jar"/>
     </ant>
     <echo>MDS deployment completed</echo>
   </target>
