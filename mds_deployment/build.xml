@@ -17,7 +17,7 @@
 
     <!-- generate SAR path -->
     <property name="sarLocation"
-              value="${compositeDir}/deploy/sca_${compositeName}_rev${revision}.jar"/>
+              value="${compositeDir}/deploy_sar/sca_${compositeName}_rev${revision}.jar"/>
     <echo>SAR location: ${sarLocation}</echo>
 </target>
 
