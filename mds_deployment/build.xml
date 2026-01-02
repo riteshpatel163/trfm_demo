@@ -56,6 +56,7 @@
 
 
   <!-- ******** RUN EVERYTHING ******** -->
+  <target name="package-all" depends="package-composite"/>
   <target name="deploy-all" depends="deployMDS,deploy-composite"/>
 
 </project>
