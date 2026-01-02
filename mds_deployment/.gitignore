@@ -1,0 +1,4 @@
+SOA/build.properties
+.data/
+SOA/deploy/sca_${compositeName}_rev1.0.jar SOA/deploy/sca_mds_deployment_rev1.0.jar
+.data/
