@@ -11,7 +11,7 @@
          dir="${oracle.home}/soa/bin">
         <property name="oracle.home" value="${oracle.home}"/>
         <property name="compositeName" value="mds_deployment"/>
-        <property name="compositeDir" value="${compositeDir}"/>
+        <property name="compositeDir" value="D:/jdeveloper_git/git/mds_deployment/SOA"/>
         <property name="revision" value="${revision}"/>
     </ant>
 
