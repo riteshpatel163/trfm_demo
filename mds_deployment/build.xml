@@ -11,13 +11,15 @@
       <property name="revision" value="${revision}"/>
     </ant>
     <!-- generate SAR path -->
-    <property name="sarLocation" value="${compositeDir}/sca_${compositeName}_rev${revision}.jar"/>
+    <property name="sarLocation" value="${compositeDir}/deploy/sca_${compositeName}_rev${revision}.jar"/>
     <echo>SAR location: ${sarLocation}</echo>
   </target>
   <!-- ********* DEPLOY COMPOSITE ******** -->
   <target name="deploy-composite" depends="package-composite">
     <echo>Deploying Composite ${compositeName}</echo>
     <ant antfile="${oracle.home}/soa/bin/ant-sca-deploy.xml">
+      <property name="compositeName" value="mds_deployment"/>
+      <property name="compositeDir" value="D:/jdeveloper_git/git/mds_deployment/SOA"/>
       <property name="oracle.home" value="${oracle.home}"/>
       <property name="sarLocation" value="${sarLocation}"/>
       <property name="serverURL" value="${serverURL}"/>
