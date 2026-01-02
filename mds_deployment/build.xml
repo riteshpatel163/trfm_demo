@@ -4,6 +4,7 @@
   <!-- ********* PACKAGE COMPOSITE ******** -->
   <target name="package-composite">
     <echo>Packaging Composite ${compositeName}</echo>
+<<<<<<< HEAD
     <ant antfile="${oracle.home}/soa/bin/ant-sca-package.xml" dir="${oracle.home}/soa/bin">
       <property name="oracle.home" value="${oracle.home}"/>
       <property name="compositeName" value="mds_deployment"/>
@@ -14,6 +15,23 @@
     <property name="sarLocation" value="${compositeDir}/deploy/sca_${compositeName}_rev${revision}.jar"/>
     <echo>SAR location: ${sarLocation}</echo>
   </target>
+=======
+
+    <ant antfile="${oracle.home}/soa/bin/ant-sca-package.xml"
+         dir="${oracle.home}/soa/bin">
+        <property name="oracle.home" value="${oracle.home}"/>
+        <property name="compositeName" value="${compositeName}"/>
+        <property name="compositeDir" value="${compositeDir}"/>
+        <property name="revision" value="${revision}"/>
+    </ant>
+
+    <!-- generate SAR path -->
+    <property name="sarLocation"
+              value="${compositeDir}/deploy/sca_${compositeName}_rev${revision}.jar"/>
+</target>
+
+
+>>>>>>> 92f6ee4 (sample one)
   <!-- ********* DEPLOY COMPOSITE ******** -->
   <target name="deploy-composite" depends="package-composite">
     <echo>Deploying Composite ${compositeName}</echo>
