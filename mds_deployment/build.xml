@@ -1,25 +1,61 @@
-<?xml version="1.0" encoding="windows-1252" ?>
-<project name="deployMDS" default="deployMDS">
+<?xml version="1.0" encoding="windows-1252"?>
+<project name="SOA_MDS_DEPLOY" default="deploy-all">
+
   <property file="build.properties"/>
-  <target name="deployMDS">
-    <echo>Deploy MDS</echo>
-    <echo>Remove and create local MDS temp folder</echo>
-    <delete dir="deploy"/>
-    <mkdir dir="deploy"/>
-    <zip destfile="deploy/mds.jar" compress="false">
-      <fileset dir="${mds.repository}/apps"/>
-    </zip>   
-    <ant antfile="${oracle.home}/soa/bin/ant-sca-deploy.xml" inheritall="false" target="deploy">
-      <property name="wl_home" value="${oracle.home}/wlserver"/>
-      <property name="oracle.home" value="${oracle.home}/soa"/>
-      <property name="serverURL" value="${deploy.serverURL}"/>
-      <property name="user" value="${deploy.user}"/>
-      <property name="password" value="${deploy.password}"/>
-      <property name="overwrite" value="true"/>
-      <property name="forceDefault" value="true"/>
-      <property name="sarLocation" value="deploy/mds.jar"/>
-      <property name="failOnError" value="true"/>
-    </ant>
-    <echo>MDS deployment completed</echo> 
+
+  <!-- ********* PACKAGE COMPOSITE ******** -->
+  <target name="package-composite">
+      <echo>Packaging Composite ${compositeName}</echo>
+
+      <ant antfile="${oracle.home}/soa/bin/ant-sca-package.xml">
+          <property name="oracle.home" value="${oracle.home}"/>
+          <property name="compositeName" value="${compositeName}"/>
+          <property name="compositeDir" value="${compositeDir}"/>
+          <property name="revision" value="${revision}"/>
+      </ant>
   </target>
+
+
+  <!-- ********* DEPLOY COMPOSITE ******** -->
+  <target name="deploy-composite" depends="package-composite">
+      <echo>Deploying Composite ${compositeName}</echo>
+
+      <ant antfile="${oracle.home}/soa/bin/ant-sca-deploy.xml">
+          <property name="oracle.home" value="${oracle.home}"/>
+          <property name="sarLocation" value="${sarLocation}"/>
+          <property name="serverURL" value="${serverURL}"/>
+          <property name="user" value="${user}"/>
+          <property name="password" value="${password}"/>
+          <property name="overwrite" value="true"/>
+      </ant>
+  </target>
+
+
+  <!-- ********* DEPLOY MDS ******** -->
+  <target name="deployMDS">
+      <echo>Deploying MDS...</echo>
+
+      <delete dir="deploy"/>
+      <mkdir dir="deploy"/>
+
+      <zip destfile="deploy/mds.jar" compress="false">
+          <fileset dir="${mds.repository}/apps"/>
+      </zip>
+
+      <ant antfile="${oracle.home}/soa/bin/ant-sca-deploy.xml">
+          <property name="oracle.home" value="${oracle.home}"/>
+          <property name="serverURL" value="${serverURL}"/>
+          <property name="user" value="${user}"/>
+          <property name="password" value="${password}"/>
+          <property name="overwrite" value="true"/>
+          <property name="sarLocation" value="deploy/mds.jar"/>
+      </ant>
+
+      <echo>MDS deployment completed</echo>
+  </target>
+
+
+  <!-- ******** RUN EVERYTHING ******** -->
+  <target name="deploy-all" depends="deployMDS,deploy-composite"/>
+
 </project>
